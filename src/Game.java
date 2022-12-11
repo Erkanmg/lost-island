@@ -20,19 +20,41 @@ public class Game {
             System.out.println("############ BÖLGELER ###########");
             System.out.println();
             System.out.println("Bölgeler");
-            System.out.println("1 - Güvenli Ev --> Burası sizin için güvenli bir yer, düşman yoktur!");
-            System.out.println("2 - Mağaza --> Silah ve zırh alabilirsiniz!");
+            System.out.println("1 - Güvenli Ev --> Burası sizin için güvenli bir yer, düşman yoktur !");
+            System.out.println("2 - Eşya Dükkanı --> Silah ve zırh alabilirsiniz !");
+            System.out.println("3 - Mağara --> Ödül <Yemek> dikkatli ol karşına canavar çıkabilir !");
+            System.out.println("4 - Orman --> Ödül <Odun> dikkatli ol karşına vampir çıkabilir !");
+            System.out.println("5 - Nehir --> Ödüş <Su> dikkatli ol karşına ayı çıkabilir !");
+            System.out.println("0 - Çıkış Yap --> Oyunu Sonlandır !");
+
             System.out.print("Lütfen gitmek istediğiniz bölgeyi seçiniz : ");
             int selectLoc = input.nextInt();
             switch (selectLoc){
+                case 0:
+                    location = null;
+                    break;
                 case 1:
                     location = new SafeHouse(player);
                     break;
                 case 2:
                     location = new ToolStore(player);
                     break;
+                case 3:
+                    location = new Cave(player);
+                    break;
+                case 4:
+                    location = new Forest(player);
+                    break;
+                case 5:
+                    location = new River(player);
+                    break;
                 default:
-                    location = new SafeHouse(player);
+                    System.out.println("Lütfen geçerli bir bölge seçiniz !");
+            }
+
+            if (location == null){
+                System.out.println("Çıkış Yaptınız !");
+                    break;
             }
 
             if(!location.onLocation()) {
@@ -40,10 +62,5 @@ public class Game {
                 break;
             }
         }
-
-
     }
-
-
-
 }

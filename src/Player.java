@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Player {
     private int damage;
     private int health;
+    private int orjinalHealth;
     private int money;
     private String charName;
     private String name;
@@ -54,6 +55,7 @@ public class Player {
     public void initPlayer(GameChar gameChar){
         this.setDamage(gameChar.getDamage());
         this.setHealth(gameChar.getHealth());
+        this.setOrjinalHealth(gameChar.getHealth());
         this.setMoney(gameChar.getMoney());
         this.setName(gameChar.getcharName());
 
@@ -61,11 +63,16 @@ public class Player {
 
     public void printInfo() {
         System.out.println(
-                        "Silahınız : " + this.getInventory().getWeapon().getName()
-                        + "    Karakter : " + this.getName()
-                        + "    Hasar : " +this.getDamage()
+                          "    Silahınız : " + this.getInventory().getWeapon().getName()
+                        + "    Zırhınız : " + this.getInventory().getArmor().getName()
+                        + "    Bloklama : " + this.getInventory().getArmor().getBlock()
+                        + "    Hasar : " +this.getTotalDamage()
                         + "    Sağlık : " + this.getHealth()
                         + "    Para : " + this.getMoney());
+    }
+
+    public int getTotalDamage() {
+        return this.getDamage() + this.getInventory().getWeapon().getDamage();
     }
 
     public int getDamage() {
@@ -116,7 +123,21 @@ public class Player {
         this.inventory = inventory;
     }
 
+    public int getOrjinalHealth() {
+        return orjinalHealth;
+    }
 
+    public void setOrjinalHealth(int orjinalHealth) {
+        this.orjinalHealth = orjinalHealth;
+    }
+
+    public Scanner getInput() {
+        return input;
+    }
+
+    public void setInput(Scanner input) {
+        this.input = input;
+    }
 }
 
 
